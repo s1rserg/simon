@@ -5,9 +5,9 @@ let randomNumbers = [];
   let roundNumber = 1;
   let chosenNumbers = [];
 
-  $(document).keypress(function() {
+  $('.con').click(function() {
     $('.title').text("Round " + roundNumber);
-    $(document).unbind();
+    $('.con').unbind();
     randomGenerator();
     eventlisteners();
   })
@@ -17,7 +17,7 @@ let randomNumbers = [];
     switch (randomNumber) {
       case 1:
         $('.green').addClass('pressed');
-        new Audio("sounds/red.wav").play();
+        new Audio("sounds/green.wav").play();
         randomNumbers.push("green");
         setTimeout(function() {
           $('.green').removeClass('pressed');
@@ -72,21 +72,21 @@ let randomNumbers = [];
       eventChecker();
     })
     if (chosenNumbers[chosenNumbers.length - 1] !== randomNumbers[chosenNumbers.length - 1]) {
-      $('.con').fadeOut();
-      new Audio("sounds/defeat.wav").play();
+      $('.title').html('Game over');
       setTimeout(function(){
-        $('.con').fadeIn();
-      }, 1000);
-      new Audio("sounds/defeat.wav").play();
-      $('.title').html('Game over, press any key to restart');
+              new Audio("sounds/defeat.wav").play();
+      }, 400);
+      setTimeout(function(){
+          $('.title').text("Round " + roundNumber);
+                  randomGenerator();
+      }, 1200);
       $('.col').unbind();
-      $(document).keypress(function() {
+      $('.con').click(function() {
         randomNumbers.length = 0;
         chosenNumbers.length = 0;
         roundNumber = 1;
-        $('.title').text("Round " + roundNumber);
-        $(document).unbind();
-        randomGenerator();
+        $('.con').unbind();
+
         eventlisteners();
       });
       return;
@@ -105,20 +105,21 @@ let randomNumbers = [];
   function check() {
     for (var i = 0; i < chosenNumbers.length; i++) {
       if (chosenNumbers[i] !== randomNumbers[i]) {
-        $('.con').fadeOut();
-        new Audio("sounds/defeat.wav").play();
+        $('.title').html('Game over');
         setTimeout(function(){
-          $('.con').fadeIn();
-        }, 1000);
-        $('.title').html('Game over, press any key to restart');
+                new Audio("sounds/defeat.wav").play();
+        }, 400);
+        setTimeout(function(){
+          $('.title').text("Round " + roundNumber);
+                    randomGenerator();
+        }, 1200);
         $('.col').unbind();
-        $(document).keypress(function() {
+        $('.con').click(function() {
           randomNumbers.length = 0;
           chosenNumbers.length = 0;
           roundNumber = 1;
-          $('.title').text("Round " + roundNumber);
-          $(document).unbind();
-          randomGenerator();
+          $('.con').unbind();
+
           eventlisteners();
         });
         return;
