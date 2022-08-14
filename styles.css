@@ -8,6 +8,7 @@ body {
   margin: auto;
   margin: 100px;
   font-size: 3rem;
+  color: gray;
 }
 
 .main{
@@ -60,4 +61,25 @@ body {
 
 .small-title{
   margin-top: 100px;
+}
+
+@media screen and (max-width: 800px) {
+
+.title{
+  margin: 50px auto;
+  padding: 0 10px;
+}
+
+ .green, .red, .yellow, .blue {
+   width: 100px;
+   height: 150px;
+   border-width: 10px;
+   border-style: solid;
+   border-color: #000000;
+   border-radius: 30px;
+ }
+
+ .small-title{
+   margin-top: 50px;
+ }
 }
